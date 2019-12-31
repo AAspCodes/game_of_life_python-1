@@ -8,8 +8,7 @@ class Game:
 
     def __init__(self):
         self.life_cycles = 0
-        self.life_cycle_limit = 100
-
+        self.life_cycle_limit = 10
         self.main()
 
     def main(self):
