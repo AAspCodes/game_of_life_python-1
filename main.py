@@ -24,9 +24,64 @@ class Game:
             sp.call('clear', shell=True)
             self.life_cycles += 1
             if self.life_cycles > self.life_cycle_limit:
+                self.do_what_next()
 
     def display_lifecycles(self):
         print(f'Life Cycles: {self.life_cycles}')
+
+    def do_what_next(self):
+        options = [self.go_on_living, self.stop_living, self.add_food,
+                   self.save_life, self.load_life, self.restart_life,
+                   self.change_enviroment]
+        prompt = """
+        What would you like to do next?
+        [1] go on living
+        [2] stop living
+        [3] add add food
+        [4] save this life
+        [5] load a saved life
+        [6] restart life 
+        [7] change the enviromental variables
+
+        enter the number of your choice.
+        """
+        while True:
+            try:
+                choice = options[get_int_input(1, len(options), prompt) - 1]
+            except IndexError:
+                # probably won't ever be used.. but feels like good practice...
+                print("That's not in the availble options.")
+            except Exception:
+                print("Try a Whole number.")
+            else:
+                break
+
+        choice()
+
+    def go_on_living(self):
+        # ask user how many more life cycles they want
+        answer = get_int_input(1, 1_000_000,
+                               "How many more life cycles would you like?\
+                               \nEnter a number between 1 and 1 million: ")
+        self.life_cycle_limit += answer
+
+    def add_food(self):
+        pass
+
+    def stop_living(self):
+        pass
+
+    def restart_life(self):
+        pass
+
+    def save_life(self):
+        pass
+
+    def load_life(self):
+        pass
+
+    def change_enviroment(self):
+        pass
 
     @staticmethod
     def newCell(x_val, y_val):
