@@ -6,7 +6,23 @@ import subprocess as sp
 class Game:
 
     def __init__(self):
+        self.life_cycles = 0
+        self.life_cycle_limit = 100
+
         self.main()
+
+    def main(self):
+        # loaded_world_array = loadTextFile('world.txt')
+        loaded_world_array = Game.genRandomWorld(100, 100)
+        world = self.init_world(loaded_world_array)
+        while True:
+            self.displayWorld(world)
+            self.updateWorld(world)
+            sleep(.01)
+            sp.call('clear', shell=True)
+            self.life_cycles += 1
+            if self.life_cycles > self.life_cycle_limit:
+                self.life_cycle_limit += self.ask_user_to_continue()
 
     @staticmethod
     def newCell(x_val, y_val):
@@ -127,22 +143,6 @@ class Game:
                 exit()
             else:
                 print("'y' or 'n'")
-
-    def main(self):
-        # loaded_world_array = loadTextFile('world.txt')
-        loaded_world_array = Game.genRandomWorld(100, 100)
-        world = self.init_world(loaded_world_array)
-        life_cycles = 0
-        life_cycle_limit = 100
-        while True:
-            self.displayWorld(world)
-            self.updateWorld(world)
-            sleep(.01)
-            sp.call('clear', shell=True)
-            life_cycles += 1
-            if life_cycles > life_cycle_limit:
-                life_cycle_limit = self.ask_user_to_continue()
-                life_cycles = 0
 
 
 if __name__ == "__main__":
