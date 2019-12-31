@@ -17,12 +17,16 @@ class Game:
         world = self.init_world(loaded_world_array)
         while True:
             self.displayWorld(world)
+            self.display_lifecycles()
             self.updateWorld(world)
             sleep(.01)
             sp.call('clear', shell=True)
             self.life_cycles += 1
             if self.life_cycles > self.life_cycle_limit:
                 self.life_cycle_limit += self.ask_user_to_continue()
+
+    def display_lifecycles(self):
+        print(f'Life Cycles: {self.life_cycles}')
 
     @staticmethod
     def newCell(x_val, y_val):
