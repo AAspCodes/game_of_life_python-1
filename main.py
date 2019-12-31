@@ -24,7 +24,6 @@ class Game:
             sp.call('clear', shell=True)
             self.life_cycles += 1
             if self.life_cycles > self.life_cycle_limit:
-                self.life_cycle_limit += self.ask_user_to_continue()
 
     def display_lifecycles(self):
         print(f'Life Cycles: {self.life_cycles}')
@@ -129,25 +128,6 @@ class Game:
                 row_array.append(isAlive)
             world.append(row_array)
         return world
-
-    @staticmethod
-    def ask_user_to_continue():
-        while True:
-            answer = input("would you like to continue? y/n: ")
-            if answer == "y":
-                while True:
-                    answer = input("how may more cycles would you like?: ")
-                    try:
-                        answer = int(answer)
-                    except:
-                        print("Try a whole number.")
-                    else:
-                        return answer
-            elif answer == "n":
-                print("goodbye")
-                exit()
-            else:
-                print("'y' or 'n'")
 
 
 if __name__ == "__main__":
