@@ -31,7 +31,7 @@ class Game:
     def do_what_next(self):
         options = [self.go_on_living, self.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
-                   self.change_enviroment]
+                   self.change_enviroment_variables]
         prompt = """
         What would you like to do next?
         [1] go on living
@@ -40,7 +40,7 @@ class Game:
         [4] save this life
         [5] load a saved life
         [6] restart life 
-        [7] change the enviromental variables
+        [7] change enviromental variables
 
         enter the number of your choice.
         """
@@ -65,7 +65,8 @@ class Game:
         self.life_cycle_limit += answer
 
     def stop_living(self):
-        pass
+        print("goodbye")
+        exit()
 
     def add_food(self):
         pass
@@ -79,7 +80,7 @@ class Game:
     def restart_life(self):
         pass
 
-    def change_enviroment(self):
+    def change_enviroment_variables(self):
         pass
 
     @staticmethod
