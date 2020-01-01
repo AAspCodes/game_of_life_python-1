@@ -172,7 +172,6 @@ class Game:
     def displayWorld(world_array):
         display = [["*" if cell['alive'] else " " for cell in row]
                    for row in world_array]
-
         [print(" ".join(row)) for row in display]
 
     @staticmethod
