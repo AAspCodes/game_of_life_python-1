@@ -18,14 +18,16 @@ class Game:
         loaded_world_array = Game.genRandomWorld(100, 100)
         world = self.init_world(loaded_world_array)
         while True:
-            self.displayWorld(world)
-            self.display_lifecycles()
-            self.updateWorld(world)
-            sleep(.01)
-            sp.call('clear', shell=True)
-            self.life_cycles += 1
-            if self.life_cycles > self.life_cycle_limit:
-                self.do_what_next()
+            self.cycle()
+    def cycle(self):
+        Game.displayWorld(self.world)
+        self.display_lifecycles()
+        self.updateWorld()
+        sleep(.01)
+        sp.call('clear', shell=True)
+        self.life_cycles += 1
+        if self.life_cycles > self.life_cycle_limit:
+            self.do_what_next()
 
     def display_lifecycles(self):
         print(f'Life Cycles: {self.life_cycles}')
