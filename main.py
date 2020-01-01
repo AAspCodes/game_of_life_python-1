@@ -36,7 +36,7 @@ class Game:
         What would you like to do next?
         [1] go on living
         [2] stop living
-        [3] add add food
+        [3] add food
         [4] save this life
         [5] load a saved life
         [6] restart life 
@@ -64,19 +64,19 @@ class Game:
                                \nEnter a number between 1 and 1 million: ")
         self.life_cycle_limit += answer
 
-    def add_food(self):
-        pass
-
     def stop_living(self):
         pass
 
-    def restart_life(self):
+    def add_food(self):
         pass
 
     def save_life(self):
         pass
 
     def load_life(self):
+        pass
+
+    def restart_life(self):
         pass
 
     def change_enviroment(self):
