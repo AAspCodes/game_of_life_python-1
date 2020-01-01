@@ -1,7 +1,7 @@
 from time import sleep
 import random
 import subprocess as sp
-from user_input import get_int_input, get_string_input
+from user_input import get_int_input
 from cell import Cell
 
 
