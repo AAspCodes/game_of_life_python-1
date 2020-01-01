@@ -2,6 +2,7 @@ from time import sleep
 import random
 import subprocess as sp
 from user_input import get_int_input, get_string_input
+from cell import Cell
 
 
 class Game:
@@ -92,29 +93,15 @@ class Game:
 
     @staticmethod
     def newCell(x_val, y_val):
-        return {
-            'alive': False,
-            'x-value': x_val,
-            'y-value': y_val,
-            'alive-neighbor-count': 0
-        }
+        return Cell(x_val, y_val, is_alive=False, alive_neighbors=0)
 
     @staticmethod
     def kill(cell):
-        cell['alive'] = False
+        cell.is_alive = False
 
     @staticmethod
     def birth(cell):
-        # print(cell)
-        cell['alive'] = True
-
-    @staticmethod
-    def update_x(cell, value):
-        cell['x-value'] = value
-
-    @staticmethod
-    def update_y(cell, value):
-        cell['y-value'] = value
+        cell.is_alive = True
 
     def update_neighbors(self, cell):
         neighbor_locations = [
@@ -129,12 +116,12 @@ class Game:
         ]
         alive_neighbors = 0
         for coordinate in neighbor_locations:
-            x = cell['x-value'] + coordinate[0]
-            y = cell['y-value'] + coordinate[1]
+            x = cell.x_val + coordinate[0]
+            y = cell.y_val + coordinate[1]
             if len(self.world[0]) > x > -1 and len(self.world) > y > -1:
-                if self.world[y][x]['alive']:
+                if self.world[y][x].is_alive:
                     alive_neighbors += 1
-        cell['alive-neighbor-count'] = alive_neighbors
+        cell.alive_neighbors = alive_neighbors
 
     def updateWorld(self):
         for row in self.world:
@@ -145,8 +132,8 @@ class Game:
                 self.evaluateCell(cell)
 
     def evaluateCell(self, cell):
-        neighbors = cell['alive-neighbor-count']
-        if cell['alive']:
+        neighbors = cell.alive_neighbors
+        if cell.is_alive:
             if neighbors not in [2, 3]:
                 self.kill(cell)
         else:
@@ -170,7 +157,7 @@ class Game:
 
     @staticmethod
     def displayWorld(world_array):
-        display = [["*" if cell['alive'] else " " for cell in row]
+        display = [["*" if cell.is_alive else " " for cell in row]
                    for row in world_array]
         [print(" ".join(row)) for row in display]
 
