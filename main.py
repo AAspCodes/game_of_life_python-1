@@ -7,6 +7,8 @@ from user_input import get_int_input, get_string_input
 class Game:
 
     def __init__(self):
+        self.world_width = 100
+        self.world_height = 100
         self.life_cycles = 0
         self.life_cycle_limit = 10
         self.main()
