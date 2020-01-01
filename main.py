@@ -11,14 +11,17 @@ class Game:
         self.world_height = 100
         self.life_cycles = 0
         self.life_cycle_limit = 10
+        self.world = self.make_new_world()
         self.main()
 
     def main(self):
-        # loaded_world_array = loadTextFile('world.txt')
-        loaded_world_array = Game.genRandomWorld(100, 100)
-        world = self.init_world(loaded_world_array)
         while True:
             self.cycle()
+
+    def make_new_world(self):
+        return self.init_world(
+            Game.genRandomWorld(self.world_width, self.world_height))
+
     def cycle(self):
         Game.displayWorld(self.world)
         self.display_lifecycles()
@@ -113,8 +116,7 @@ class Game:
     def update_y(cell, value):
         cell['y-value'] = value
 
-    @staticmethod
-    def update_neighbors(cell, world):
+    def update_neighbors(self, cell):
         neighbor_locations = [
             (-1, -1),
             (-1, 0),
@@ -129,16 +131,16 @@ class Game:
         for coordinate in neighbor_locations:
             x = cell['x-value'] + coordinate[0]
             y = cell['y-value'] + coordinate[1]
-            if len(world[0]) > x > -1 and len(world) > y > -1:
-                if world[y][x]['alive']:
+            if len(self.world[0]) > x > -1 and len(self.world) > y > -1:
+                if self.world[y][x]['alive']:
                     alive_neighbors += 1
         cell['alive-neighbor-count'] = alive_neighbors
 
-    def updateWorld(self, world):
-        for row in world:
+    def updateWorld(self):
+        for row in self.world:
             for cell in row:
-                self.update_neighbors(cell, world)
-        for row in world:
+                self.update_neighbors(cell)
+        for row in self.world:
             for cell in row:
                 self.evaluateCell(cell)
 
