@@ -173,7 +173,9 @@ class Game:
     def displayWorld(world_array):
         display = [["*" if cell.is_alive else " " for cell in row]
                    for row in world_array]
-        [print(" ".join(row)) for row in display]
+        joined_rows = [(" ".join(row)) for row in display]
+        output = "\n".join(joined_rows)
+        print(output)
 
     @staticmethod
     def loadTextFile(file):
