@@ -7,7 +7,6 @@ from cell import Cell
 
 
 # TODO: stop annoying code completions
-# TODO: save world function
 # TODO: load world function
 # TODO: restart life function
 # TODO: add food function
@@ -27,6 +26,7 @@ class Game:
         self.life_cycles = 0
         self.life_cycle_limit = 10
         self.world = self.make_new_world()
+        self.save_file_name = "saved_world.txt"
         self.main()
 
     def main(self):
@@ -94,7 +94,11 @@ class Game:
         pass
 
     def save_life(self):
-        pass
+        boolean_world = Game.world_to_booleans(self.world)
+        with open(self.save_file_name, "w") as f:
+            f.write(str(boolean_world))
+        print("This world has been saved")
+        self.do_what_next()
 
     def load_life(self):
         pass
@@ -168,6 +172,11 @@ class Game:
                 world_row.append(cell)
             world_cells.append(world_row)
         return world_cells
+
+    @staticmethod
+    def world_to_booleans(world_array):
+        return [[True if cell.is_alive else False for cell in row]
+                for row in world_array]
 
     @staticmethod
     def displayWorld(world_array):
