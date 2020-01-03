@@ -12,6 +12,7 @@ from file_handle import save_text_file, load_text_file
 # TODO: replace some for loops with .map and list constructors
 # TODO: displayWorld should be made more flexable
 # TODO: display world should output a 2d grid or 3 values. alive, dead, food.
+# TODO: save and load world age in life_cycles
 
 
 class Game:
