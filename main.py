@@ -162,12 +162,10 @@ class Game:
                 self.birth(cell)
 
     def init_world(self, init_world_array):
-        world_height = len(init_world_array)
-        world_width = len(init_world_array[0])
         world_cells = []
-        for col_pos in range(0, world_height - 1):
+        for col_pos in range(0, self.world_height - 1):
             world_row = []
-            for row_pos in range(0, world_width - 1):
+            for row_pos in range(0, self.world_width - 1):
                 cell = self.newCell(row_pos, col_pos)
                 loadup_value = init_world_array[col_pos][row_pos]
                 if loadup_value:
