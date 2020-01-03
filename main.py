@@ -99,6 +99,8 @@ class Game:
 
     def load_life(self):
         world_from_memory = load_text_file(self.save_file_name)
+        self.world_width = len(world_from_memory[0])
+        self.world_height = len(world_from_memory)
         self.world = self.init_world(world_from_memory)
         self.life_cycles = 0
         self.life_cycle_limit = 0
