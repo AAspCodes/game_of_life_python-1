@@ -2,7 +2,6 @@ from time import sleep
 import random
 import subprocess as sp
 from user_input import get_int_input
-from cell import Cell
 from file_handle import save_text_file, load_text_file
 
 # TODO: restart life function
@@ -10,6 +9,7 @@ from file_handle import save_text_file, load_text_file
 # TODO: change_enviroment_variables function
 # TODO: replace some for loops with .map and list constructors
 # TODO: display world should output a 2d grid or 3 values. alive, dead, food.
+
 
 
 class Game:
@@ -111,15 +111,29 @@ class Game:
 
     @staticmethod
     def newCell(x_val, y_val):
-        return Cell(x_val, y_val, is_alive=False, alive_neighbors=0)
+        return {
+            'alive': False,
+            'x-value': x_val,
+            'y-value': y_val,
+            'alive-neighbor-count': 0
+        }
 
     @staticmethod
     def kill(cell):
-        cell.is_alive = False
+        cell['alive'] = False
 
     @staticmethod
     def birth(cell):
-        cell.is_alive = True
+        # print(cell)
+        cell['alive'] = True
+
+    @staticmethod
+    def update_x(cell, value):
+        cell['x-value'] = value
+
+    @staticmethod
+    def update_y(cell, value):
+        cell['y-value'] = value
 
     def update_neighbors(self, cell):
         neighbor_locations = [
@@ -134,12 +148,12 @@ class Game:
         ]
         alive_neighbors = 0
         for coordinate in neighbor_locations:
-            x = cell.x_val + coordinate[0]
-            y = cell.y_val + coordinate[1]
+            x = cell['x-value'] + coordinate[0]
+            y = cell['y-value'] + coordinate[1]
             if len(self.world[0]) > x > -1 and len(self.world) > y > -1:
-                if self.world[y][x].is_alive:
+                if self.world[y][x]['alive']:
                     alive_neighbors += 1
-        cell.alive_neighbors = alive_neighbors
+        cell['alive-neighbor-count'] = alive_neighbors
 
     def updateWorld(self):
         for row in self.world:
@@ -150,8 +164,8 @@ class Game:
                 self.evaluateCell(cell)
 
     def evaluateCell(self, cell):
-        neighbors = cell.alive_neighbors
-        if cell.is_alive:
+        neighbors = cell['alive-neighbor-count']
+        if cell['alive']:
             if neighbors not in [2, 3]:
                 self.kill(cell)
         else:
@@ -173,17 +187,18 @@ class Game:
 
     @staticmethod
     def world_to_booleans(world_array):
-        return [[True if cell.is_alive else False for cell in row]
+        return [[True if cell["alive"] else False for cell in row]
                 for row in world_array]
 
     @staticmethod
     def displayWorld(world_array):
-        display = [["*" if cell.is_alive else " " for cell in row]
+        display = [["*" if cell['alive'] else " " for cell in row]
                    for row in world_array]
         joined_rows = [(" ".join(row)) for row in display]
         output = "\n".join(joined_rows)
         print(output)
 
+    @staticmethod
     def genRandomWorld(width, height):
         world = []
         for i in range(0, height):
