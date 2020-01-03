@@ -104,7 +104,8 @@ class Game:
         self.world = self.init_world(world_from_memory)
         self.life_cycles = 0
         self.life_cycle_limit = 0
-        self.main()
+        self.do_what_next()
+
 
     def restart_life(self):
         pass
