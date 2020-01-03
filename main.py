@@ -110,10 +110,6 @@ class Game:
         pass
 
     @staticmethod
-    def newCell(x_val, y_val):
-        return Cell(x_val, y_val, is_alive=False, alive_neighbors=0)
-
-    @staticmethod
     def kill(cell):
         cell.is_alive = False
 
@@ -163,7 +159,7 @@ class Game:
         for col_pos in range(0, self.world_height - 1):
             world_row = []
             for row_pos in range(0, self.world_width - 1):
-                cell = self.newCell(row_pos, col_pos)
+                cell = Cell(row_pos, col_pos)
                 loadup_value = init_world_array[col_pos][row_pos]
                 if loadup_value:
                     self.birth(cell)

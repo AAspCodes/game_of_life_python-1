@@ -1,7 +1,7 @@
 class Cell:
 
-    def __init__(self, x_val, y_val, is_alive, alive_neighbors):
+    def __init__(self, x_val, y_val):
         self.x_val = x_val
         self.y_val = y_val
-        self.is_alive = is_alive
-        self.alive_neighbors = alive_neighbors
+        self.is_alive = False
+        self.alive_neighbors = 0
