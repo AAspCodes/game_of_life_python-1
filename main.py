@@ -5,7 +5,6 @@ from user_input import get_int_input
 from cell import Cell
 
 
-
 # TODO: stop annoying code completions
 # TODO: load world function
 # TODO: restart life function
@@ -14,8 +13,6 @@ from cell import Cell
 # TODO: replace some for loops with .map and list constructors
 # TODO: displayWorld should be made more flexable
 # TODO: display world should output a 2d grid or 3 values. alive, dead, food.
-
-
 
 
 class Game:
