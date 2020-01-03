@@ -163,7 +163,7 @@ class Game:
             for row_pos in range(0, world_width - 1):
                 cell = self.newCell(row_pos, col_pos)
                 loadup_value = init_world_array[col_pos][row_pos]
-                if int(loadup_value) == 1:
+                if loadup_value:
                     self.birth(cell)
                 world_row.append(cell)
             world_cells.append(world_row)
@@ -187,7 +187,7 @@ class Game:
         for i in range(0, height):
             row_array = []
             for j in range(0, width):
-                isAlive = random.randint(0, 1)
+                isAlive = bool(random.randint(0, 1))
                 row_array.append(isAlive)
             world.append(row_array)
         return world
