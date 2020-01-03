@@ -23,6 +23,7 @@ class Game:
         self.life_cycle_limit = 10
         self.world = self.make_new_world()
         self.save_file_name = "saved_world.txt"
+        self.cycle_time = .01
         self.main()
 
     def main(self):
@@ -37,7 +38,7 @@ class Game:
         Game.displayWorld(self.world)
         self.display_lifecycles()
         self.updateWorld()
-        sleep(.01)
+        sleep(self.cycle_time)
         sp.call('clear', shell=True)
         self.life_cycles += 1
         if self.life_cycles > self.life_cycle_limit:
