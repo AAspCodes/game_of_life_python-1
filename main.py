@@ -3,7 +3,7 @@ import random
 import subprocess as sp
 from user_input import get_int_input
 from cell import Cell
-
+from file_handle import save_text_file
 
 # TODO: stop annoying code completions
 # TODO: load world function
@@ -92,8 +92,7 @@ class Game:
 
     def save_life(self):
         boolean_world = Game.world_to_booleans(self.world)
-        with open(self.save_file_name, "w") as f:
-            f.write(str(boolean_world))
+        save_text_file(self.save_file_name, boolean_world)
         print("This world has been saved")
         self.do_what_next()
 
@@ -182,11 +181,6 @@ class Game:
         joined_rows = [(" ".join(row)) for row in display]
         output = "\n".join(joined_rows)
         print(output)
-
-    @staticmethod
-    def loadTextFile(file):
-        load_worldfile = open(file).read()
-        return load_worldfile.split('\n')
 
     def genRandomWorld(width, height):
         world = []
