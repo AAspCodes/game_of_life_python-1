@@ -98,13 +98,13 @@ class Game:
         self.do_what_next()
 
     def load_life(self):
-        self.life_cycles, world_from_memory = load_text_file(self.save_file_name)
+        self.life_cycles, world_from_memory = load_text_file(
+            self.save_file_name)
         self.world_width = len(world_from_memory[0])
         self.world_height = len(world_from_memory)
         self.world = self.init_world(world_from_memory)
         self.life_cycle_limit = self.life_cycles
         self.do_what_next()
-
 
     def restart_life(self):
         pass
