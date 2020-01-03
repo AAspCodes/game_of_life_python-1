@@ -3,10 +3,9 @@ import random
 import subprocess as sp
 from user_input import get_int_input
 from cell import Cell
-from file_handle import save_text_file
+from file_handle import save_text_file, load_text_file
 
 # TODO: stop annoying code completions
-# TODO: load world function
 # TODO: restart life function
 # TODO: add food function
 # TODO: change_enviroment_variables function
@@ -97,7 +96,11 @@ class Game:
         self.do_what_next()
 
     def load_life(self):
-        pass
+        world_from_memory = load_text_file(self.save_file_name)
+        self.world = self.init_world(world_from_memory)
+        self.life_cycles = 0
+        self.life_cycle_limit = 0
+        self.main()
 
     def restart_life(self):
         pass
