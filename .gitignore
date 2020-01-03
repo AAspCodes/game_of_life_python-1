@@ -1,3 +1,6 @@
+# temporary and for testing
+saved_world.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
