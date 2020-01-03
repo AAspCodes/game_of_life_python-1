@@ -42,7 +42,7 @@ class Game:
         sleep(self.cycle_time)
         sp.call('clear', shell=True)
         self.life_cycles += 1
-        if self.life_cycles > self.life_cycle_limit:
+        if self.life_cycles >= self.life_cycle_limit:
             self.do_what_next()
 
     def display_lifecycles(self):
