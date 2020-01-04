@@ -78,7 +78,7 @@ class Game:
     def go_on_living(self):
         # ask user how many more life cycles they want
         answer = get_int_input(1, 1_000_000,
-                               "How many more life cycles would you like?\
+                               "\nHow many more life cycles would you like?\
                                \nEnter a number between 1 and 1 million: ")
         self.life_cycle_limit += answer
 
