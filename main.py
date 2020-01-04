@@ -6,7 +6,7 @@ from file_handle import save_text_file, load_text_file
 
 # TODO: restart life function
 # TODO: add food function
-# TODO: change_enviroment_variables function
+# TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
 # TODO: display world should output a 2d grid or 3 values. alive, dead, food.
 
@@ -48,7 +48,7 @@ class Game:
     def do_what_next(self):
         options = [self.go_on_living, self.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
-                   self.change_enviroment_variables]
+                   self.change_environment_variables]
         prompt = """
         What would you like to do next?
         [1] go on living
@@ -57,7 +57,7 @@ class Game:
         [4] save this life
         [5] load a saved life
         [6] restart life 
-        [7] change enviromental variables
+        [7] change environmental variables
 
         enter the number of your choice.
         """
@@ -66,7 +66,7 @@ class Game:
                 choice = options[get_int_input(1, len(options), prompt) - 1]
             except IndexError:
                 # probably won't ever be used.. but feels like good practice...
-                print("That's not in the availble options.")
+                print("That's not in the available options.")
             except Exception:
                 print("Try a Whole number.")
             else:
@@ -106,7 +106,7 @@ class Game:
     def restart_life(self):
         pass
 
-    def change_enviroment_variables(self):
+    def change_environment_variables(self):
         pass
 
     @staticmethod
