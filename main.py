@@ -187,7 +187,7 @@ class Game:
 
     @staticmethod
     def world_to_booleans(world_array):
-        return [[True if cell["alive"] else False for cell in row]
+        return [[cell["alive"] for cell in row]
                 for row in world_array]
 
     @staticmethod
