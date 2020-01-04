@@ -127,14 +127,6 @@ class Game:
         # print(cell)
         cell['alive'] = True
 
-    @staticmethod
-    def update_x(cell, value):
-        cell['x-value'] = value
-
-    @staticmethod
-    def update_y(cell, value):
-        cell['y-value'] = value
-
     def update_neighbors(self, cell):
         neighbor_locations = [
             (-1, -1),
