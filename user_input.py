@@ -33,8 +33,6 @@ def get_int_input(low_end, high_end, prompt):
     return answer
 
 
-class bad_input(Exception):
-    pass
 class InputOutOfRange(Exception):
     pass
 
