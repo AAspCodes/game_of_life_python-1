@@ -19,9 +19,9 @@ def get_int_input(low_end, high_end, prompt):
         try:
             answer = int(input(prompt))
             if not (answer >= low_end and answer <= high_end):
-                raise bad_input
+                raise InputOutOfRange
 
-        except bad_input:
+        except InputOutOfRange:
             print(f"'{answer}' isn't in the range, try again.")
         except ValueError:
             print("try a whole number.")
@@ -35,3 +35,7 @@ def get_int_input(low_end, high_end, prompt):
 
 class bad_input(Exception):
     pass
+class InputOutOfRange(Exception):
+    pass
+
+
