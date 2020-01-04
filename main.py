@@ -91,7 +91,7 @@ class Game:
     def save_life(self):
         boolean_world = Game.world_to_booleans(self.world)
         save_text_file(self.save_file_name, boolean_world, self.life_cycles)
-        print("This world has been saved")
+        print("This World has been saved.")
         self.do_what_next()
 
     def load_life(self):
@@ -101,6 +101,7 @@ class Game:
         self.world_height = len(world_from_memory)
         self.world = self.init_loaded_world(world_from_memory)
         self.life_cycle_limit = self.life_cycles
+        print("A World has been loaded.")
         self.do_what_next()
 
     def restart_life(self):
