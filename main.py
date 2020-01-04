@@ -1,15 +1,16 @@
-from time import sleep
 import random
 import subprocess as sp
-from user_input import get_int_input
+from time import sleep
+
 from file_handle import save_text_file, load_text_file
+from user_input import get_int_input
+
 
 # TODO: restart life function
 # TODO: add food function
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
 # TODO: display world should output a 2d grid or 3 values. alive, dead, food.
-
 
 
 class Game:
