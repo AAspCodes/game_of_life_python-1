@@ -110,11 +110,11 @@ class Game:
         pass
 
     @staticmethod
-    def newCell(x_val, y_val):
+    def newCell(x_value, y_value):
         return {
             'alive': False,
-            'x-value': x_val,
-            'y-value': y_val,
+            'x-value': x_value,
+            'y-value': y_value,
             'alive-neighbor-count': 0
         }
 
