@@ -4,6 +4,7 @@ from time import sleep
 
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
+from better_output import newlined_print
 
 
 # TODO: restart life function
@@ -82,7 +83,7 @@ class Game:
         self.life_cycle_limit += answer
 
     def stop_living(self):
-        print("goodbye")
+        newlined_print("goodbye")
         exit()
 
     def add_food(self):
@@ -91,7 +92,7 @@ class Game:
     def save_life(self):
         boolean_world = Game.world_to_booleans(self.world)
         save_text_file(self.save_file_name, boolean_world, self.life_cycles)
-        print("This World has been saved.")
+        newlined_print("This World has been saved.")
         self.do_what_next()
 
     def load_life(self):
@@ -101,15 +102,14 @@ class Game:
         self.world_height = len(world_from_memory)
         self.world = self.init_loaded_world(world_from_memory)
         self.life_cycle_limit = self.life_cycles
-        print("A World has been loaded.")
+        newlined_print("The World has been loaded.")
         self.do_what_next()
 
     def restart_life(self):
         self.life_cycles = 0
         self.life_cycle_limit = self.life_cycles
         self.world = self.init_fresh_world()
-        print()
-        print("        The World has been restarted.")
+        newlined_print("The World has restarted.")
         self.do_what_next()
 
     def change_environment_variables(self):
