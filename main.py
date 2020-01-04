@@ -105,7 +105,12 @@ class Game:
         self.do_what_next()
 
     def restart_life(self):
-        pass
+        self.life_cycles = 0
+        self.life_cycle_limit = self.life_cycles
+        self.world = self.init_fresh_world()
+        print()
+        print("        The World has been restarted.")
+        self.do_what_next()
 
     def change_environment_variables(self):
         pass
