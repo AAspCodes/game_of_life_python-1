@@ -50,18 +50,6 @@ class Game:
         options = [self.go_on_living, self.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
                    self.change_environment_variables]
-        prompt = """
-        What would you like to do next?
-        [1] go on living
-        [2] stop living
-        [3] add food
-        [4] save this life
-        [5] load a saved life
-        [6] restart life 
-        [7] change environmental variables
-
-        enter the number of your choice.
-        """
         while True:
             try:
                 choice = options[get_int_input(1, len(options), prompt) - 1]
@@ -73,6 +61,16 @@ class Game:
             else:
                 break
 
+        prompt = """What would you like to do next?
+[1] go on living
+[2] stop living
+[3] add food
+[4] save this life
+[5] load a saved life
+[6] restart life 
+[7] change environmental variables
+
+enter the number of your choice: """
         choice()
 
     def go_on_living(self):
