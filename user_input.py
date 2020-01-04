@@ -3,8 +3,8 @@ def get_string_input(options, prompt):
         try:
             answer = str(input(prompt))
             if answer not in options:
-                raise bad_input
-        except bad_input:
+                raise ImpossibleChoice
+        except ImpossibleChoice:
             print(f"'{answer}' is not a possible choice, try again")
         except Exception:
             print("try again")
@@ -39,3 +39,5 @@ class InputOutOfRange(Exception):
     pass
 
 
+class ImpossibleChoice(Exception):
+    pass
