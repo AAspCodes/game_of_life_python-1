@@ -29,8 +29,7 @@ class Game:
             self.cycle()
 
     def make_new_world(self):
-        return self.init_world(
-            Game.gen_random_world(self.world_width, self.world_height))
+        return self.init_fresh_world()
 
     def cycle(self):
         Game.display_world(self.world)
@@ -99,7 +98,7 @@ class Game:
             self.save_file_name)
         self.world_width = len(world_from_memory[0])
         self.world_height = len(world_from_memory)
-        self.world = self.init_world(world_from_memory)
+        self.world = self.init_loaded_world(world_from_memory)
         self.life_cycle_limit = self.life_cycles
         self.do_what_next()
 
@@ -163,19 +162,6 @@ class Game:
             if neighbors == 3:
                 self.birth(cell)
 
-    def init_world(self, init_world_array):
-        world_cells = []
-        for col_pos in range(0, self.world_height - 1):
-            world_row = []
-            for row_pos in range(0, self.world_width - 1):
-                cell = self.new_cell(row_pos, col_pos)
-                loadup_value = init_world_array[col_pos][row_pos]
-                if loadup_value:
-                    self.birth(cell)
-                world_row.append(cell)
-            world_cells.append(world_row)
-        return world_cells
-
     @staticmethod
     def world_to_booleans(world_array):
         return [[cell["alive"] for cell in row]
@@ -189,16 +175,32 @@ class Game:
         output = "\n".join(joined_rows)
         print(output)
 
-    @staticmethod
-    def gen_random_world(width, height):
-        world = []
-        for i in range(0, height):
-            row_array = []
-            for j in range(0, width):
-                is_alive = bool(random.randint(0, 1))
-                row_array.append(is_alive)
-            world.append(row_array)
-        return world
+    # I know the following two functions are WET, but I'm not sure
+    # how to put them into one function with out being much less efficient.
+    def init_loaded_world(self, init_world_array):
+        world_cells = []
+        for col_pos in range(0, self.world_height - 1):
+            world_row = []
+            for row_pos in range(0, self.world_width - 1):
+                cell = self.new_cell(row_pos, col_pos)
+                loadup_value = init_world_array[col_pos][row_pos]
+                if loadup_value:
+                    self.birth(cell)
+                world_row.append(cell)
+            world_cells.append(world_row)
+        return world_cells
+
+    def init_fresh_world(self):
+        world_cells = []
+        for col_pos in range(0, self.world_height - 1):
+            world_row = []
+            for row_pos in range(0, self.world_width - 1):
+                cell = self.new_cell(row_pos, col_pos)
+                if bool(random.randint(0, 1)):
+                    self.birth(cell)
+                world_row.append(cell)
+            world_cells.append(world_row)
+        return world_cells
 
 
 if __name__ == "__main__":
