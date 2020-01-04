@@ -50,17 +50,6 @@ class Game:
         options = [self.go_on_living, self.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
                    self.change_environment_variables]
-        while True:
-            try:
-                choice = options[get_int_input(1, len(options), prompt) - 1]
-            except IndexError:
-                # probably won't ever be used.. but feels like good practice...
-                print("That's not in the available options.")
-            except Exception:
-                print("Try a Whole number.")
-            else:
-                break
-
         prompt = """What would you like to do next?
 [1] go on living
 [2] stop living
@@ -71,6 +60,8 @@ class Game:
 [7] change environmental variables
 
 enter the number of your choice: """
+
+        choice = options[get_int_input(1, len(options), prompt) - 1]
         choice()
 
     def go_on_living(self):
