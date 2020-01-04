@@ -124,7 +124,6 @@ class Game:
 
     @staticmethod
     def birth(cell):
-        # print(cell)
         cell['alive'] = True
 
     def update_neighbors(self, cell):
