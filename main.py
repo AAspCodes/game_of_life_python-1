@@ -30,12 +30,12 @@ class Game:
 
     def make_new_world(self):
         return self.init_world(
-            Game.genRandomWorld(self.world_width, self.world_height))
+            Game.gen_random_world(self.world_width, self.world_height))
 
     def cycle(self):
-        Game.displayWorld(self.world)
+        Game.display_world(self.world)
         self.display_lifecycles()
-        self.updateWorld()
+        self.update_world()
         sleep(self.cycle_time)
         sp.call('clear', shell=True)
         self.life_cycles += 1
@@ -110,7 +110,7 @@ class Game:
         pass
 
     @staticmethod
-    def newCell(x_value, y_value):
+    def new_cell(x_value, y_value):
         return {
             'alive': False,
             'x-value': x_value,
@@ -146,15 +146,15 @@ class Game:
                     alive_neighbors += 1
         cell['alive-neighbor-count'] = alive_neighbors
 
-    def updateWorld(self):
+    def update_world(self):
         for row in self.world:
             for cell in row:
                 self.update_neighbors(cell)
         for row in self.world:
             for cell in row:
-                self.evaluateCell(cell)
+                self.evaluate_cell(cell)
 
-    def evaluateCell(self, cell):
+    def evaluate_cell(self, cell):
         neighbors = cell['alive-neighbor-count']
         if cell['alive']:
             if neighbors not in [2, 3]:
@@ -168,7 +168,7 @@ class Game:
         for col_pos in range(0, self.world_height - 1):
             world_row = []
             for row_pos in range(0, self.world_width - 1):
-                cell = self.newCell(row_pos, col_pos)
+                cell = self.new_cell(row_pos, col_pos)
                 loadup_value = init_world_array[col_pos][row_pos]
                 if loadup_value:
                     self.birth(cell)
@@ -182,7 +182,7 @@ class Game:
                 for row in world_array]
 
     @staticmethod
-    def displayWorld(world_array):
+    def display_world(world_array):
         display = [["*" if cell['alive'] else " " for cell in row]
                    for row in world_array]
         joined_rows = [(" ".join(row)) for row in display]
@@ -190,13 +190,13 @@ class Game:
         print(output)
 
     @staticmethod
-    def genRandomWorld(width, height):
+    def gen_random_world(width, height):
         world = []
         for i in range(0, height):
             row_array = []
             for j in range(0, width):
-                isAlive = bool(random.randint(0, 1))
-                row_array.append(isAlive)
+                is_alive = bool(random.randint(0, 1))
+                row_array.append(is_alive)
             world.append(row_array)
         return world
 
