@@ -26,7 +26,7 @@ def get_int_input(low_end, high_end, prompt):
         except ValueError:
             print("try a whole number.")
         except Exception:
-            print("try again.")
+            print("Congratulations!! You just discovered a new way to break this! but still\ntry again.")
         else:
             break
 
