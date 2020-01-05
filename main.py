@@ -110,7 +110,8 @@ enter the number of your choice: """
             'alive': False,
             'x-value': x_value,
             'y-value': y_value,
-            'alive-neighbor-count': 0
+            'alive-neighbor-count': 0,
+            'has-food': False,
         }
 
     @staticmethod
