@@ -129,14 +129,13 @@ the world gave up looking for places to add food.""".format(
         self.do_what_next()
 
     def restart_life(self):
-        self.life_cycles = 0
-        self.life_cycle_limit = self.life_cycles
+        self.reset_life_cycles()
         self.world = self.init_fresh_world()
         newlined_print("The World has restarted.")
         self.do_what_next()
 
     def create_dead_world(self):
-        pass
+        self.reset_life_cycles()
 
     def change_environment_variables(self):
         pass
