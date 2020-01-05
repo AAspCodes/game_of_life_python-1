@@ -7,10 +7,8 @@ from user_input import get_int_input
 from better_output import newlined_print
 
 
-# TODO: add food function
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
-# TODO: display world should output a 2d grid or 3 values. alive, dead, food.
 
 
 class Game:
