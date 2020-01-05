@@ -264,6 +264,12 @@ the world gave up looking for places to add food.""".format(
             world_cells.append(world_row)
         return world_cells
 
+    def init_dead_world(self):
+        dead_world = [[self.new_cell(row_pos, col_pos)
+                       for row_pos in range(0, self.world_width - 1)]
+                      for col_pos in range(0, self.world_height - 1)]
+        return dead_world
+
 
 if __name__ == "__main__":
     game = Game()
