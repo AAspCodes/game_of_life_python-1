@@ -48,7 +48,7 @@ class Game:
     def do_what_next(self):
         options = [self.go_on_living, self.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
-                   self.change_environment_variables]
+                   self.create_dead_world, self.change_environment_variables]
         prompt = """What would you like to do next?
 [1] go on living
 [2] stop living
@@ -56,7 +56,8 @@ class Game:
 [4] save this life
 [5] load a saved life
 [6] restart life 
-[7] change environmental variables
+[7] create dead world
+[8] change environmental variables
 
 enter the number of your choice: """
 
@@ -133,6 +134,9 @@ the world gave up looking for places to add food.""".format(
         self.world = self.init_fresh_world()
         newlined_print("The World has restarted.")
         self.do_what_next()
+
+    def create_dead_world(self):
+        pass
 
     def change_environment_variables(self):
         pass
