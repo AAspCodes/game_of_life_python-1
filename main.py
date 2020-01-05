@@ -112,6 +112,7 @@ enter the number of your choice: """
             'y-value': y_value,
             'alive-neighbor-count': 0,
             'has-food': False,
+            'neighbor-has-food': False
         }
 
     @staticmethod
