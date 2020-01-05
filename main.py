@@ -158,11 +158,12 @@ enter the number of your choice: """
 
     def evaluate_cell(self, cell):
         neighbors = cell['alive-neighbor-count']
+        neighbors_have_food = cell['neighbor-has-food']
         if cell['alive']:
             if neighbors not in [2, 3]:
                 self.kill(cell)
         else:
-            if neighbors == 3:
+            if neighbors == 3 or neighbors_have_food:
                 self.birth(cell)
 
     @staticmethod
