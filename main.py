@@ -78,7 +78,7 @@ enter the number of your choice: """
         """this function is soooo ugly"""
 
         # temporary
-        max_food = 100
+        max_food = 1000
         prompt = """How much food do you want to add?
 Enter a number between 0 and {0}: """.format(max_food)
         # ask user how much food they want to add.
