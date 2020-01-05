@@ -90,6 +90,18 @@ Enter a number between 0 and {0}: """.format(max_food)
             if (not cell['alive']) and (not cell['has-food']):
                 cell['has-food'] = True
                 amount_of_food -= 1
+
+            # if more food is trying to be added than there is space availble for,
+            # prevent that
+            attempts_to_add_food += 1
+            if attempts_to_add_food > amount_of_food * 10:
+                message = """ after {0} attempts to add food
+and {1} food added
+the world gave up looking for places to add food.""".format(
+                    attempts_to_add_food, intended_food - amount_of_food)
+
+                break
+
         self.do_what_next()
 
     def save_life(self):
