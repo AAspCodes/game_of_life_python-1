@@ -207,8 +207,18 @@ the world gave up looking for places to add food.""".format(
 
     @staticmethod
     def display_world(world_array):
-        display = [["*" if cell['alive'] else " " for cell in row]
-                   for row in world_array]
+        living_cells = 0
+        display = [[]]
+        for row in world_array:
+            display_row = []
+            for cell in row:
+                if cell['alive']:
+                    living_cells += 1
+                    display_row.append("*")
+                else:
+                    display_row.append(" ")
+            display.append(display_row)
+
         joined_rows = [(" ".join(row)) for row in display]
         output = "\n".join(joined_rows)
         print(output)
