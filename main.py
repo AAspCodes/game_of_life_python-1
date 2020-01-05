@@ -76,7 +76,12 @@ enter the number of your choice: """
         exit()
 
     def add_food(self):
-        pass
+        # temporary
+        max_food = 100
+        prompt = """How much food do you want to add?
+Enter a number between 0 and {0}: """.format(max_food)
+        # ask user how much food they want to add.
+        amount_of_food = get_int_input(0, 30, prompt)
 
     def save_life(self):
         boolean_world = Game.world_to_booleans(self.world)
