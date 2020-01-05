@@ -100,7 +100,7 @@ Enter a number between 0 and {0}: """.format(max_food)
             # if more food is trying to be added than there is space availble for,
             # prevent that
             attempts_to_add_food += 1
-            if attempts_to_add_food > amount_of_food * 10:
+            if attempts_to_add_food > intended_food * 10:
                 message = """ after {0} attempts to add food
 and {1} food added
 the world gave up looking for places to add food.""".format(
