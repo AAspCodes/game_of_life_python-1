@@ -222,6 +222,13 @@ the world gave up looking for places to add food.""".format(
         joined_rows = [(" ".join(row)) for row in display]
         output = "\n".join(joined_rows)
         print(output)
+        Game.display_number_living(living_cells)
+
+    @staticmethod
+    def display_number_living(living_cells):
+        print(f'number of living cells: {living_cells}')
+        print(f'living cells graphed: {"|" * (living_cells // 10)}')
+
 
     # I know the following two functions are WET, but I'm not sure
     # how to put them into one function with out being much less efficient.
