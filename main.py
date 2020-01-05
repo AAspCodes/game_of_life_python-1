@@ -90,6 +90,7 @@ Enter a number between 0 and {0}: """.format(max_food)
             if (not cell['alive']) and (not cell['has-food']):
                 cell['has-food'] = True
                 amount_of_food -= 1
+        self.do_what_next()
 
     def save_life(self):
         boolean_world = Game.world_to_booleans(self.world)
