@@ -135,7 +135,10 @@ the world gave up looking for places to add food.""".format(
         self.do_what_next()
 
     def create_dead_world(self):
+        self.world = self.init_dead_world()
         self.reset_life_cycles()
+        newlined_print("The world is new, and void of life.")
+        self.do_what_next()
 
     def change_environment_variables(self):
         pass
