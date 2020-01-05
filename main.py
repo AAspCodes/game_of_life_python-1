@@ -82,6 +82,14 @@ enter the number of your choice: """
 Enter a number between 0 and {0}: """.format(max_food)
         # ask user how much food they want to add.
         amount_of_food = get_int_input(0, 30, prompt)
+        # add food in random places if the cell there is dead.
+        while amount_of_food > 0:
+            random_x = random.randint(0, self.world_width - 2)
+            random_y = random.randint(0, self.world_height - 2)
+            cell = self.world[random_y][random_x]
+            if (not cell['alive']) and (not cell['has-food']):
+                cell['has-food'] = True
+                amount_of_food -= 1
 
     def save_life(self):
         boolean_world = Game.world_to_booleans(self.world)
