@@ -7,7 +7,6 @@ from user_input import get_int_input
 from better_output import newlined_print
 
 
-
 # TODO: add food function
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
