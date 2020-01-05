@@ -141,6 +141,10 @@ the world gave up looking for places to add food.""".format(
     def change_environment_variables(self):
         pass
 
+    def reset_life_cycles(self):
+        self.life_cycle_limit = 0
+        self.life_cycles = 0
+
     @staticmethod
     def new_cell(x_value, y_value):
         return {
