@@ -165,6 +165,7 @@ enter the number of your choice: """
         else:
             if neighbors == 3 or neighbors_have_food:
                 self.birth(cell)
+        cell['has-food'] = False
 
     @staticmethod
     def world_to_booleans(world_array):
