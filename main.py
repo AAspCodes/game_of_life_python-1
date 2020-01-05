@@ -135,13 +135,18 @@ enter the number of your choice: """
             (1, 1)
         ]
         alive_neighbors = 0
+        found_food = False
         for coordinate in neighbor_locations:
             x = cell['x-value'] + coordinate[0]
             y = cell['y-value'] + coordinate[1]
             if len(self.world[0]) > x > -1 and len(self.world) > y > -1:
-                if self.world[y][x]['alive']:
+                neighbor = self.world[y][x]
+                if neighbor['alive']:
                     alive_neighbors += 1
+                if neighbor['has-food']:
+                    found_food = True
         cell['alive-neighbor-count'] = alive_neighbors
+        cell['neighbor-has-food'] = found_food
 
     def update_world(self):
         for row in self.world:
