@@ -76,6 +76,8 @@ enter the number of your choice: """
         exit()
 
     def add_food(self):
+        """this function is soooo ugly"""
+
         # temporary
         max_food = 100
         prompt = """How much food do you want to add?
