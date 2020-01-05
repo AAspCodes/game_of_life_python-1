@@ -82,8 +82,14 @@ enter the number of your choice: """
 Enter a number between 0 and {0}: """.format(max_food)
         # ask user how much food they want to add.
         amount_of_food = get_int_input(0, max_food, prompt)
+        intended_food = amount_of_food
         # add food in random places if the cell there is dead.
-        while amount_of_food > 0:
+        attempts_to_add_food = 0
+        while True:
+            if amount_of_food <= 0:
+                print(f'{intended_food} was added.')
+                break
+
             random_x = random.randint(0, self.world_width - 2)
             random_y = random.randint(0, self.world_height - 2)
             cell = self.world[random_y][random_x]
