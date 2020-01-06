@@ -64,10 +64,10 @@ enter the number of your choice: """
         """Ask user how many more life cycles they want,
         add to life_cycle_limit,
         continue the cycle."""
-        answer = get_int_input(1, 1_000_000,
-                               "\nHow many more life cycles would you like?\
-                               \nEnter a number between 1 and 1 million: ")
-        self.life_cycle_limit += answer
+        self.life_cycle_limit += get_int_input(
+            1, 1_000_000,
+            "\nHow many more life cycles would you like?\
+            \nEnter a number between 1 and 1 million: ")
 
     @staticmethod
     def stop_living():
