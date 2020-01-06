@@ -5,9 +5,9 @@ from time import sleep
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
 
-from cell import new_cell, evaluate_cell, birth
+from cell import evaluate_cell
 from display import display_life_cycles, display_world, newlined_print
-
+from world_generators import init_dead_world, init_fresh_world, init_loaded_world
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
 
@@ -19,7 +19,7 @@ class Game:
         self.world_height = 100
         self.life_cycles = 0
         self.life_cycle_limit = 10
-        self.world = self.make_new_world()
+        self.world = init_fresh_world()
         self.save_file_name = "saved_world.txt"
         self.cycle_time = .01
         self.main()
@@ -27,9 +27,6 @@ class Game:
     def main(self):
         while True:
             self.cycle()
-
-    def make_new_world(self):
-        return self.init_fresh_world()
 
     def cycle(self):
         display_world(self.world)
@@ -107,7 +104,7 @@ Enter a number between 0 and {0}: """.format(max_food)
 and {1} food added
 the world gave up looking for places to add food.""".format(
                     attempts_to_add_food, intended_food - amount_of_food)
-
+                newlined_print(message)
                 break
 
         self.do_what_next()
@@ -123,19 +120,23 @@ the world gave up looking for places to add food.""".format(
             self.save_file_name)
         self.world_width = len(world_from_memory[0])
         self.world_height = len(world_from_memory)
-        self.world = self.init_loaded_world(world_from_memory)
+        self.world = init_loaded_world(world_from_memory,
+                                       height=self.world_height,
+                                       width=self.world_width)
         self.life_cycle_limit = self.life_cycles
         newlined_print("The World has been loaded.")
         self.do_what_next()
 
     def restart_life(self):
         self.reset_life_cycles()
-        self.world = self.init_fresh_world()
+        self.world = init_fresh_world(
+            height=self.world_height, width=self.world_width)
         newlined_print("The World has restarted.")
         self.do_what_next()
 
     def create_dead_world(self):
-        self.world = self.init_dead_world()
+        self.world = init_dead_world(
+            height=self.world_height, width=self.world_width)
         self.reset_life_cycles()
         newlined_print("The world is new, and void of life.")
         self.do_what_next()
@@ -185,39 +186,39 @@ the world gave up looking for places to add food.""".format(
         return [[cell["alive"] for cell in row]
                 for row in world_array]
 
-    # I know the following two functions are WET, but I'm not sure
-    # how to put them into one function with out being much less efficient.
-
-    def init_loaded_world(self, init_world_array):
-        world_cells = []
-        for col_pos in range(0, self.world_height - 1):
-            world_row = []
-            for row_pos in range(0, self.world_width - 1):
-                cell = new_cell(row_pos, col_pos)
-                loadup_value = init_world_array[col_pos][row_pos]
-                if loadup_value:
-                    birth(cell)
-                world_row.append(cell)
-            world_cells.append(world_row)
-        return world_cells
-
-    def init_fresh_world(self):
-        world_cells = []
-        for col_pos in range(0, self.world_height - 1):
-            world_row = []
-            for row_pos in range(0, self.world_width - 1):
-                cell = new_cell(row_pos, col_pos)
-                if bool(random.randint(0, 1)):
-                    birth(cell)
-                world_row.append(cell)
-            world_cells.append(world_row)
-        return world_cells
-
-    def init_dead_world(self):
-        dead_world = [[new_cell(row_pos, col_pos)
-                       for row_pos in range(0, self.world_width - 1)]
-                      for col_pos in range(0, self.world_height - 1)]
-        return dead_world
+    # # I know the following two functions are WET, but I'm not sure
+    # # how to put them into one function with out being much less efficient.
+    #
+    # def init_loaded_world(self, init_world_array):
+    #     world_cells = []
+    #     for col_pos in range(0, self.world_height - 1):
+    #         world_row = []
+    #         for row_pos in range(0, self.world_width - 1):
+    #             cell = new_cell(row_pos, col_pos)
+    #             loadup_value = init_world_array[col_pos][row_pos]
+    #             if loadup_value:
+    #                 birth(cell)
+    #             world_row.append(cell)
+    #         world_cells.append(world_row)
+    #     return world_cells
+    #
+    # def init_fresh_world(self):
+    #     world_cells = []
+    #     for col_pos in range(0, self.world_height - 1):
+    #         world_row = []
+    #         for row_pos in range(0, self.world_width - 1):
+    #             cell = new_cell(row_pos, col_pos)
+    #             if bool(random.randint(0, 1)):
+    #                 birth(cell)
+    #             world_row.append(cell)
+    #         world_cells.append(world_row)
+    #     return world_cells
+    #
+    # def init_dead_world(self):
+    #     dead_world = [[new_cell(row_pos, col_pos)
+    #                    for row_pos in range(0, self.world_width - 1)]
+    #                   for col_pos in range(0, self.world_height - 1)]
+    #     return dead_world
 
 
 if __name__ == "__main__":
