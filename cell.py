@@ -1,7 +1,7 @@
 
-def new_cell(x_value, y_value):
+def new_cell(x_value, y_value, alive=False):
     return {
-        'alive': False,
+        'alive': alive,
         'x-value': x_value,
         'y-value': y_value,
         'alive-neighbor-count': 0,

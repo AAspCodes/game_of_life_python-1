@@ -1,5 +1,5 @@
-import random
-from cell import new_cell, birth
+from random import randint
+from cell import new_cell
 
 
 def init_world(fresh=False, dead=False, loaded_world=None, height=100, width=100):
@@ -31,10 +31,9 @@ def cell_decider(fresh, dead, loaded_world):
 
 
 def fresh_init(**kwargs):
-    cell = new_cell(kwargs['row_pos'], kwargs['col_pos'])
-    if bool(random.randint(0, 1)):
-        birth(cell)
-    return cell
+    return new_cell(kwargs['row_pos'],
+                    kwargs['col_pos'],
+                    alive=bool(randint(0, 1)))
 
 
 def dead_init(**kwargs):
@@ -44,8 +43,6 @@ def dead_init(**kwargs):
 def load_init(**kwargs):
     row_pos = kwargs['row_pos']
     col_pos = kwargs['col_pos']
-    loaded_world = kwargs['loaded_world']
-    cell = new_cell(kwargs['row_pos'], kwargs['col_pos'])
-    if loaded_world[row_pos][col_pos]:
-        birth(cell)
-    return cell
+    return new_cell(row_pos,
+                    col_pos,
+                    alive=kwargs['loaded_world'][row_pos][col_pos])
