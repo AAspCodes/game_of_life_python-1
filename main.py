@@ -44,6 +44,7 @@ class Game:
         print(f'Life Cycles: {self.life_cycles}')
 
     def do_what_next(self):
+        """Present the user with options, do the option chosen"""
         options = [self.go_on_living, self.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
                    self.create_dead_world, self.change_environment_variables]
@@ -63,13 +64,16 @@ enter the number of your choice: """
         choice()
 
     def go_on_living(self):
-        # ask user how many more life cycles they want
+        """Ask user how many more life cycles they want,
+        add to life_cycle_limit,
+        continue the cycle."""
         answer = get_int_input(1, 1_000_000,
                                "\nHow many more life cycles would you like?\
                                \nEnter a number between 1 and 1 million: ")
         self.life_cycle_limit += answer
 
     def stop_living(self):
+        """exit the game"""
         newlined_print("goodbye")
         exit()
 
