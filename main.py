@@ -6,6 +6,7 @@ from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
 from better_output import newlined_print
 from cell import new_cell, evaluate_cell, birth
+from display import display_lifecycles
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
@@ -32,16 +33,13 @@ class Game:
 
     def cycle(self):
         Game.display_world(self.world)
-        self.display_lifecycles()
+        display_lifecycles(self.life_cycles)
         self.update_world()
         sleep(self.cycle_time)
         sp.call('clear', shell=True)
         self.life_cycles += 1
         if self.life_cycles >= self.life_cycle_limit:
             self.do_what_next()
-
-    def display_lifecycles(self):
-        print(f'Life Cycles: {self.life_cycles}')
 
     def do_what_next(self):
         """Present the user with options, do the option chosen"""
