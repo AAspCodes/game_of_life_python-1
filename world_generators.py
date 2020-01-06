@@ -2,21 +2,20 @@ from random import randint
 from cell import new_cell
 
 
-def init_world(fresh=False, dead=False, loaded_world=None, height=100, width=100):
+def init_world(fresh=False, dead=False, loaded_world=None, height=100,
+               width=100):
     """master world init function"""
 
     cell_action = cell_decider(fresh, dead, loaded_world)
-
-    world_cells = []
+    world = []
     for col_pos in range(0, height - 1):
         world_row = []
         for row_pos in range(0, width - 1):
-            cell = cell_action(row_pos=row_pos,
-                               col_pos=col_pos,
-                               loaded_world=loaded_world)
-            world_row.append(cell)
-        world_cells.append(world_row)
-    return world_cells
+            world_row.append(cell_action(row_pos=row_pos,
+                                         col_pos=col_pos,
+                                         loaded_world=loaded_world))
+        world.append(world_row)
+    return world
 
 
 def cell_decider(fresh, dead, loaded_world):
