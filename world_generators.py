@@ -1,3 +1,9 @@
+""" I know the following three functions are WET, but I'm not sure
+how to put them into one function with out being much less efficient.
+My hunch is that if i add an argument that will modulate
+'loadup_value','bool(random.randint(0, 1))' and do nothing,
+ i can compress to one functions """
+
 import random
 from cell import new_cell, birth
 def init_loaded_world(init_world_array, height=100, width=100):

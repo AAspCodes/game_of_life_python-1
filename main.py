@@ -186,8 +186,7 @@ the world gave up looking for places to add food.""".format(
         return [[cell["alive"] for cell in row]
                 for row in world_array]
 
-    # # I know the following two functions are WET, but I'm not sure
-    # # how to put them into one function with out being much less efficient.
+
     #
     # def init_loaded_world(self, init_world_array):
     #     world_cells = []
