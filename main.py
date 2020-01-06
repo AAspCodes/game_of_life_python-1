@@ -159,10 +159,12 @@ the world gave up looking for places to add food.""".format(
                               (1, -1), (1, 0), (1, 1)]
         alive_neighbors = 0
         found_food = False
+        index_width = self.world_width - 1
+        index_height = self.world_height - 1
         for coordinate in neighbor_locations:
             x = cell['x-value'] + coordinate[0]
             y = cell['y-value'] + coordinate[1]
-            if len(self.world[0]) > x > -1 and len(self.world) > y > -1:
+            if index_width > x > -1 and index_height > y > -1:
                 neighbor = self.world[y][x]
                 alive_neighbors += neighbor['alive']
                 if neighbor['has-food']:
