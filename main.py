@@ -6,7 +6,7 @@ from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
 from better_output import newlined_print
 from cell import new_cell, evaluate_cell, birth
-from display import display_lifecycles
+from display import display_life_cycles
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
@@ -33,7 +33,7 @@ class Game:
 
     def cycle(self):
         Game.display_world(self.world)
-        display_lifecycles(self.life_cycles)
+        display_life_cycles(self.life_cycles)
         self.update_world()
         sleep(self.cycle_time)
         sp.call('clear', shell=True)
