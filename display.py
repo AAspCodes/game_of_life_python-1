@@ -24,3 +24,8 @@ def display_world(world_array):
 def display_number_living(living_cells):
     print(f'number of living cells: {living_cells}')
     print(f'living cells graphed: {"|" * (living_cells // 10)}')
+
+
+def newlined_print(output):
+    print()
+    print(output)

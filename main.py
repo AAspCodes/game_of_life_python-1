@@ -4,9 +4,9 @@ from time import sleep
 
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
-from better_output import newlined_print
+
 from cell import new_cell, evaluate_cell, birth
-from display import display_life_cycles, display_world
+from display import display_life_cycles, display_world, newlined_print
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
