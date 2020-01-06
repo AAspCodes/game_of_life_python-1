@@ -4,7 +4,7 @@ from time import sleep
 
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
-from display import display_life_cycles, display_world, newlined_print
+from display import display, newlined_print
 from world_generators import init_world
 from world_update import update_world
 
@@ -29,8 +29,7 @@ class Game:
             self.cycle()
 
     def cycle(self):
-        display_world(self.world)
-        display_life_cycles(self.life_cycles)
+        display(self.world, self.life_cycles)
         update_world(self.world_width, self.world_height, self.world)
         sleep(self.cycle_time)
         sp.call('clear', shell=True)

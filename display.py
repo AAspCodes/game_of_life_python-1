@@ -17,8 +17,7 @@ def display_world(world_array):
 
     joined_rows = [(" ".join(row)) for row in display]
     output = "\n".join(joined_rows)
-    print(output)
-    display_number_living(living_cells)
+    return output, living_cells
 
 
 def display_number_living(living_cells):
@@ -29,3 +28,9 @@ def display_number_living(living_cells):
 def newlined_print(output):
     print()
     print(output)
+
+def display(world_array, life_cycles):
+    output, living_cells = display_world()
+    print(output)
+    display_number_living(living_cells)
+    display_life_cycles(life_cycles)
