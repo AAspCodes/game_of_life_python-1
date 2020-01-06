@@ -8,8 +8,14 @@ def load_text_file(file_name):
     return life_cycles, boolean_world
 
 
-def save_text_file(file_name, data, life_cycles):
+def save_text_file(file_name, world, life_cycles):
+    data = world_to_booleans(world)
     with open(file_name, "w") as f:
         f.write(f"{life_cycles}\n" + "\n".join(
             ["".join(['1' if cell_alive else '0'
-             for cell_alive in row]) for row in data]))
+                      for cell_alive in row]) for row in data]))
+
+
+def world_to_booleans(world_array):
+    return [[cell["alive"] for cell in row]
+            for row in world_array]

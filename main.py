@@ -114,8 +114,7 @@ the world gave up looking for places to add food.""".format(
         self.do_what_next()
 
     def save_life(self):
-        boolean_world = Game.world_to_booleans(self.world)
-        save_text_file(self.save_file_name, boolean_world, self.life_cycles)
+        save_text_file(self.save_file_name, self.world, self.life_cycles)
         newlined_print("This World has been saved.")
         self.do_what_next()
 
@@ -153,11 +152,6 @@ the world gave up looking for places to add food.""".format(
     def reset_life_cycles(self):
         self.life_cycle_limit = 0
         self.life_cycles = 0
-
-    @staticmethod
-    def world_to_booleans(world_array):
-        return [[cell["alive"] for cell in row]
-                for row in world_array]
 
 
 if __name__ == "__main__":
