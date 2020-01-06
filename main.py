@@ -151,16 +151,8 @@ the world gave up looking for places to add food.""".format(
         self.life_cycles = 0
 
     def update_neighbors(self, cell):
-        neighbor_locations = [
-            (-1, -1),
-            (-1, 0),
-            (-1, 1),
-            (0, -1),
-            (0, 1),
-            (1, -1),
-            (1, 0),
-            (1, 1)
-        ]
+        neighbor_locations = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1),
+                              (1, -1), (1, 0), (1, 1)]
         alive_neighbors = 0
         found_food = False
         for coordinate in neighbor_locations:
