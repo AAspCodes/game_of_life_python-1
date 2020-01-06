@@ -6,7 +6,7 @@ from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
 from better_output import newlined_print
 from cell import new_cell, evaluate_cell, birth
-from display import display_life_cycles
+from display import display_life_cycles, display_world
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
@@ -32,7 +32,7 @@ class Game:
         return self.init_fresh_world()
 
     def cycle(self):
-        Game.display_world(self.world)
+        display_world(self.world)
         display_life_cycles(self.life_cycles)
         self.update_world()
         sleep(self.cycle_time)
@@ -184,30 +184,6 @@ the world gave up looking for places to add food.""".format(
     def world_to_booleans(world_array):
         return [[cell["alive"] for cell in row]
                 for row in world_array]
-
-    @staticmethod
-    def display_world(world_array):
-        living_cells = 0
-        display = [[]]
-        for row in world_array:
-            display_row = []
-            for cell in row:
-                if cell['alive']:
-                    living_cells += 1
-                    display_row.append("*")
-                else:
-                    display_row.append(" ")
-            display.append(display_row)
-
-        joined_rows = [(" ".join(row)) for row in display]
-        output = "\n".join(joined_rows)
-        print(output)
-        Game.display_number_living(living_cells)
-
-    @staticmethod
-    def display_number_living(living_cells):
-        print(f'number of living cells: {living_cells}')
-        print(f'living cells graphed: {"|" * (living_cells // 10)}')
 
     # I know the following two functions are WET, but I'm not sure
     # how to put them into one function with out being much less efficient.
