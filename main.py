@@ -5,7 +5,7 @@ from time import sleep
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
 from better_output import newlined_print
-from cell import new_cell, evaluate_cell
+from cell import new_cell, evaluate_cell, birth
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
@@ -219,10 +219,10 @@ the world gave up looking for places to add food.""".format(
         for col_pos in range(0, self.world_height - 1):
             world_row = []
             for row_pos in range(0, self.world_width - 1):
-                cell = self.new_cell(row_pos, col_pos)
+                cell = new_cell(row_pos, col_pos)
                 loadup_value = init_world_array[col_pos][row_pos]
                 if loadup_value:
-                    self.birth(cell)
+                    birth(cell)
                 world_row.append(cell)
             world_cells.append(world_row)
         return world_cells
@@ -232,15 +232,15 @@ the world gave up looking for places to add food.""".format(
         for col_pos in range(0, self.world_height - 1):
             world_row = []
             for row_pos in range(0, self.world_width - 1):
-                cell = self.new_cell(row_pos, col_pos)
+                cell = new_cell(row_pos, col_pos)
                 if bool(random.randint(0, 1)):
-                    self.birth(cell)
+                    birth(cell)
                 world_row.append(cell)
             world_cells.append(world_row)
         return world_cells
 
     def init_dead_world(self):
-        dead_world = [[self.new_cell(row_pos, col_pos)
+        dead_world = [[new_cell(row_pos, col_pos)
                        for row_pos in range(0, self.world_width - 1)]
                       for col_pos in range(0, self.world_height - 1)]
         return dead_world
