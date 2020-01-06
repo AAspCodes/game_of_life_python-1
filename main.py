@@ -154,13 +154,11 @@ the world gave up looking for places to add food.""".format(
         self.life_cycle_limit = 0
         self.life_cycles = 0
 
-    def update_neighbors(self, cell):
+    def update_neighbors(self, cell, index_width, index_height):
         neighbor_locations = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1),
                               (1, -1), (1, 0), (1, 1)]
         alive_neighbors = 0
         found_food = False
-        index_width = self.world_width - 1
-        index_height = self.world_height - 1
         for coordinate in neighbor_locations:
             x = cell['x-value'] + coordinate[0]
             y = cell['y-value'] + coordinate[1]
@@ -173,9 +171,11 @@ the world gave up looking for places to add food.""".format(
         cell['neighbor-has-food'] = found_food
 
     def update_world(self):
+        index_width = self.world_width - 1
+        index_height = self.world_height - 1
         for row in self.world:
             for cell in row:
-                self.update_neighbors(cell)
+                self.update_neighbors(cell, index_width, index_height)
         for row in self.world:
             for cell in row:
                 evaluate_cell(cell)
