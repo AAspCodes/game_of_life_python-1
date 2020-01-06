@@ -7,7 +7,7 @@ from user_input import get_int_input
 
 from cell import evaluate_cell
 from display import display_life_cycles, display_world, newlined_print
-from world_generators import init_dead_world, init_fresh_world, init_loaded_world
+from world_generators import init_world
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
 
@@ -19,7 +19,7 @@ class Game:
         self.world_height = 100
         self.life_cycles = 0
         self.life_cycle_limit = 10
-        self.world = init_fresh_world()
+        self.world = init_world(fresh=True)
         self.save_file_name = "saved_world.txt"
         self.cycle_time = .01
         self.main()
@@ -120,23 +120,25 @@ the world gave up looking for places to add food.""".format(
             self.save_file_name)
         self.world_width = len(world_from_memory[0])
         self.world_height = len(world_from_memory)
-        self.world = init_loaded_world(world_from_memory,
-                                       height=self.world_height,
-                                       width=self.world_width)
+        self.world = init_world(loaded_world=world_from_memory,
+                                height=self.world_height,
+                                width=self.world_width)
         self.life_cycle_limit = self.life_cycles
         newlined_print("The World has been loaded.")
         self.do_what_next()
 
     def restart_life(self):
         self.reset_life_cycles()
-        self.world = init_fresh_world(
-            height=self.world_height, width=self.world_width)
+        self.world = init_world(fresh=True,
+                                height=self.world_height,
+                                width=self.world_width)
         newlined_print("The World has restarted.")
         self.do_what_next()
 
     def create_dead_world(self):
-        self.world = init_dead_world(
-            height=self.world_height, width=self.world_width)
+        self.world = init_world(dead=True,
+                                height=self.world_height,
+                                width=self.world_width)
         self.reset_life_cycles()
         newlined_print("The world is new, and void of life.")
         self.do_what_next()
