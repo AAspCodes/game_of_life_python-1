@@ -40,9 +40,11 @@ class Game:
 
     def do_what_next(self):
         """Present the user with options, do the option chosen"""
+        # create list of functions to call
         options = [self.go_on_living, Game.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
                    self.create_dead_world, self.change_environment_variables]
+        # create input prompt
         prompt = """What would you like to do next?
 [1] go on living
 [2] stop living
@@ -54,8 +56,9 @@ class Game:
 [8] change environmental variables
 
 enter the number of your choice: """
-
+        # ask user to pick a number. use number as index in options.
         choice = options[get_int_input(1, len(options), prompt) - 1]
+        # call returned function
         choice()
 
     def go_on_living(self):
