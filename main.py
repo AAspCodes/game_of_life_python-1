@@ -164,8 +164,7 @@ the world gave up looking for places to add food.""".format(
             y = cell['y-value'] + coordinate[1]
             if len(self.world[0]) > x > -1 and len(self.world) > y > -1:
                 neighbor = self.world[y][x]
-                if neighbor['alive']:
-                    alive_neighbors += 1
+                alive_neighbors += neighbor['alive']
                 if neighbor['has-food']:
                     found_food = True
         cell['alive-neighbor-count'] = alive_neighbors
