@@ -4,9 +4,9 @@ from time import sleep
 
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
-from cell import evaluate_cell
 from display import display_life_cycles, display_world, newlined_print
 from world_generators import init_world
+from world_update import update_world
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
@@ -31,7 +31,7 @@ class Game:
     def cycle(self):
         display_world(self.world)
         display_life_cycles(self.life_cycles)
-        self.update_world()
+        update_world(self.world_width, self.world_height, self.world)
         sleep(self.cycle_time)
         sp.call('clear', shell=True)
         self.life_cycles += 1
@@ -153,32 +153,6 @@ the world gave up looking for places to add food.""".format(
     def reset_life_cycles(self):
         self.life_cycle_limit = 0
         self.life_cycles = 0
-
-    def update_neighbors(self, cell, index_width, index_height):
-        neighbor_locations = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1),
-                              (1, -1), (1, 0), (1, 1)]
-        alive_neighbors = 0
-        found_food = False
-        for coordinate in neighbor_locations:
-            x = cell['x-value'] + coordinate[0]
-            y = cell['y-value'] + coordinate[1]
-            if index_width > x > -1 and index_height > y > -1:
-                neighbor = self.world[y][x]
-                alive_neighbors += neighbor['alive']
-                if neighbor['has-food']:
-                    found_food = True
-        cell['alive-neighbor-count'] = alive_neighbors
-        cell['neighbor-has-food'] = found_food
-
-    def update_world(self):
-        index_width = self.world_width - 1
-        index_height = self.world_height - 1
-        for row in self.world:
-            for cell in row:
-                self.update_neighbors(cell, index_width, index_height)
-        for row in self.world:
-            for cell in row:
-                evaluate_cell(cell)
 
     @staticmethod
     def world_to_booleans(world_array):
