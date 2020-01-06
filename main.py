@@ -40,7 +40,7 @@ class Game:
 
     def do_what_next(self):
         """Present the user with options, do the option chosen"""
-        options = [self.go_on_living, self.stop_living, self.add_food,
+        options = [self.go_on_living, Game.stop_living, self.add_food,
                    self.save_life, self.load_life, self.restart_life,
                    self.create_dead_world, self.change_environment_variables]
         prompt = """What would you like to do next?
@@ -67,7 +67,8 @@ enter the number of your choice: """
                                \nEnter a number between 1 and 1 million: ")
         self.life_cycle_limit += answer
 
-    def stop_living(self):
+    @staticmethod
+    def stop_living():
         """exit the game"""
         newlined_print("goodbye")
         exit()
