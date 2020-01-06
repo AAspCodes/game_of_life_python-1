@@ -5,7 +5,7 @@ from time import sleep
 from file_handle import save_text_file, load_text_file
 from user_input import get_int_input
 from better_output import newlined_print
-
+from cell import new_cell, evaluate_cell
 
 # TODO: change_environment_variables function
 # TODO: replace some for loops with .map and list constructors
@@ -149,25 +149,6 @@ the world gave up looking for places to add food.""".format(
         self.life_cycle_limit = 0
         self.life_cycles = 0
 
-    @staticmethod
-    def new_cell(x_value, y_value):
-        return {
-            'alive': False,
-            'x-value': x_value,
-            'y-value': y_value,
-            'alive-neighbor-count': 0,
-            'has-food': False,
-            'neighbor-has-food': False
-        }
-
-    @staticmethod
-    def kill(cell):
-        cell['alive'] = False
-
-    @staticmethod
-    def birth(cell):
-        cell['alive'] = True
-
     def update_neighbors(self, cell):
         neighbor_locations = [
             (-1, -1),
@@ -199,18 +180,7 @@ the world gave up looking for places to add food.""".format(
                 self.update_neighbors(cell)
         for row in self.world:
             for cell in row:
-                self.evaluate_cell(cell)
-
-    def evaluate_cell(self, cell):
-        neighbors = cell['alive-neighbor-count']
-        neighbors_have_food = cell['neighbor-has-food']
-        if cell['alive']:
-            if neighbors not in [2, 3]:
-                self.kill(cell)
-        else:
-            if neighbors == 3 or neighbors_have_food:
-                self.birth(cell)
-        cell['has-food'] = False
+                evaluate_cell(cell)
 
     @staticmethod
     def world_to_booleans(world_array):
@@ -241,9 +211,9 @@ the world gave up looking for places to add food.""".format(
         print(f'number of living cells: {living_cells}')
         print(f'living cells graphed: {"|" * (living_cells // 10)}')
 
-
     # I know the following two functions are WET, but I'm not sure
     # how to put them into one function with out being much less efficient.
+
     def init_loaded_world(self, init_world_array):
         world_cells = []
         for col_pos in range(0, self.world_height - 1):
